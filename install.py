@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+"""
+Usage: `./install.py http liquid.example.org`
+
+First argument is protocol (`http` or `https`).
+Second argument is the domain of the liquid node.
+
+The script copies the templates in the repo to specific destination paths in
+the system. The arguments are used to replace URL placeholders in the
+templates.
+"""
 
 from pathlib import Path
 import shutil
