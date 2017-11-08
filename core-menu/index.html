@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf8">
+<body>
+<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__">[liquid home]</a>
+<a href="__LIQUID_PROTOCOL__://dokuwiki.__LIQUID_DOMAIN__">[dokuwiki]</a>
+
+<script>
+document.querySelector('html').addEventListener('click', function(e) {
+  var target = e.target
+  if(target.tagName == 'A') {
+    e.preventDefault()
+    window.top.location.href = target.href
+  }
+})
+</script>
