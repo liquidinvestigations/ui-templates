@@ -13,11 +13,6 @@ templates.
 from pathlib import Path
 import shutil
 
-file_list = [
-    'tpl/dokuwiki/main.php',
-]
-
-
 apps = {
     'core-menu': [
         ('index.html', '/opt/web-ui/dist/menu/index.html'),
