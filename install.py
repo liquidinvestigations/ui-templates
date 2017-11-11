@@ -25,6 +25,11 @@ apps = {
     "davros": [
         ('app/index.html', '/opt/davros/davros/app/index.html'),
     ],
+    "hypothesis": [
+# /opt/ui-templates/hypothesis/templates/layouts/
+        ('templates/layouts/base.html.jinja2', '/opt/hypothesis/h/h/templates/layouts/base.html.jinja2'),
+        ('templates/home.html.jinja2', '/opt/hypothesis/h/h/templates/home.html.jinja2'),
+    ],
 }
 
 SRC = Path(__file__).resolve().parent
@@ -47,7 +52,10 @@ def main(liquid_protocol, liquid_domain):
     post_copy()
 
 def post_copy():
+    # rebuild davros
     subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
+    # restart everything
+    subprocess.check_output(["supervisorctl", "restart", "all"])
 
 if __name__ == '__main__':
     import sys
