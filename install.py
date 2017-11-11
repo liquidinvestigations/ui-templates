@@ -11,6 +11,7 @@ templates.
 """
 
 from pathlib import Path
+import subprocess
 import shutil
 
 apps = {
@@ -20,6 +21,9 @@ apps = {
     ],
     'dokuwiki': [
         ('tpl/dokuwiki/main.php', '/opt/dokuwiki/lib/tpl/dokuwiki/main.php'),
+    ],
+    "davros": [
+        ('app/index.html', '/opt/davros/davros/app/index.html'),
     ],
 }
 
@@ -40,6 +44,10 @@ def main(liquid_protocol, liquid_domain):
             Path(dst).parent.mkdir(exist_ok=True)
             with open(dst, 'w', encoding='latin1') as f:
                 f.write(data)
+    post_copy()
+
+def post_copy():
+    subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
 
 if __name__ == '__main__':
     import sys
