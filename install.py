@@ -26,9 +26,11 @@ apps = {
         ('app/index.html', '/opt/davros/davros/app/index.html'),
     ],
     "hypothesis": [
-# /opt/ui-templates/hypothesis/templates/layouts/
         ('templates/layouts/base.html.jinja2', '/opt/hypothesis/h/h/templates/layouts/base.html.jinja2'),
         ('templates/home.html.jinja2', '/opt/hypothesis/h/h/templates/home.html.jinja2'),
+    ],
+    "matrix": [
+        ('index.html', '/opt/matrix/synapse/lib/python2.7/site-packages/syweb/webclient/index.html'),
     ],
 }
 
