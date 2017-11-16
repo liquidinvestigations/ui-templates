@@ -1,0 +1,10 @@
+{
+  "name": "ui-templates",
+  "version": "1.0.0",
+  "scripts": {
+    "scss": "sass ./core-menu/inject.scss > ./core-menu/inject.css"
+  },
+  "devDependencies": {
+    "sass": "^1.0.0-beta.3"
+  }
+}

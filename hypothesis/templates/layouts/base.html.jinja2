@@ -48,13 +48,6 @@
     <link rel="shortcut icon"
           href="{{ asset_url('images/favicons/favicon.ico') }}">
 
-    {% if ga_tracking_id %}
-    <meta name="google-analytics-tracking-id" content="{{ ga_tracking_id }}">
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
-    {# N.B. The "ga" command queue is set up by header.js. The meta tag must be
-            in the DOM before header.js is included. #}
-    {% endif %}
-
     {% include 'h:templates/includes/settings.html.jinja2' %}
 
     {% for url in asset_urls("header_js") %}
@@ -62,8 +55,6 @@
     {% endfor %}
   </head>
   <body class="body">
-	<div style="height: 50px; position: relative" id="liquid-menu-container"></div>
-	<script src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.js"></script>
     {% block header %}{% endblock %}
 
     <main>
@@ -77,5 +68,6 @@
     <script src="{{ url }}"></script>
     {% endfor %}
     {% endblock %}
+    <script src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.js"></script>
   </body>
 </html>

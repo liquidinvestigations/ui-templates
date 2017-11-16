@@ -16,11 +16,15 @@ import shutil
 
 apps = {
     'core-menu': [
-        ('index.html', '/opt/web-ui/dist/menu/index.html'),
+        ('inject.css', '/opt/web-ui/dist/menu/inject.css'),
         ('inject.js', '/opt/web-ui/dist/menu/inject.js'),
     ],
     'dokuwiki': [
         ('tpl/dokuwiki/main.php', '/opt/dokuwiki/lib/tpl/dokuwiki/main.php'),
+    ],
+    'hoover': [
+        # change so we don't inject in the built version
+        ('build/index.html', '/opt/hoover/ui/build/index.html'),
     ],
     "davros": [
         ('app/index.html', '/opt/davros/davros/app/index.html'),
@@ -55,7 +59,7 @@ def main(liquid_protocol, liquid_domain):
 
 def post_copy():
     # rebuild davros
-    subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
+    #subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
     # restart everything
     subprocess.check_output(["supervisorctl", "restart", "all"])
 

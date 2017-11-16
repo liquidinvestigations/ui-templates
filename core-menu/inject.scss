@@ -1,0 +1,128 @@
+$menuHeight: 60px;
+$themeBg: #7197bb;
+
+body.li-page {
+  padding-top: $menuHeight !important;
+}
+
+body.menu-body {
+  padding: 0;
+  margin: 0;
+  background: $themeBg;
+}
+
+* {
+  font-family:sans-serif;
+  -webkit-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  box-shadow: none !important;
+}
+
+#liMenu {
+  border: 0;
+  margin: 0;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $menuHeight;
+  z-index: 9999999;
+}
+
+.li-top-menu {
+
+  background: $themeBg;
+  width: 98%;
+  height: 100%;
+  margin: 0 auto;
+
+  text-align: right;
+
+  .li-brand-container {
+    float: left;
+    margin: 0 10px;
+
+    height: 94%;
+    background: rgba(255, 255, 255, 0.7);
+
+    border-radius: 0 0 5px 5px;
+
+    .li-brand {
+      height: 100%;
+    }
+  }
+
+  .li-btn {
+
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+
+    text-decoration: none;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin: 0 2px;
+
+    &:hover, &.active {
+      background: rgba(255, 255, 255, 0.32);
+      text-decoration: none;
+    }
+  }
+
+}
+
+.li-hypothesis-page {
+
+  .footer {
+    background: $themeBg;
+    color: #fff;
+  }
+
+  .lozenge {
+    background: $themeBg;
+    color: #fff;
+
+    .lozenge__content {
+      padding: 5px 5px 3px 5px;
+      border-radius: 4px 0 0 4px ;
+    }
+
+    .lozenge__close {
+      border-radius: 0 4px 4px 0;
+      padding: 2px 5px 0 5px;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.li-davros-page {
+  md-toolbar.md-default-theme {
+    background-color: #414042;
+  }
+}
+
+.li-matrix-page {
+  #footer {
+    background: $themeBg;
+  }
+}
+
+.li-dokuwiki-page {
+  #dokuwiki__usertools {
+    top: $menuHeight + 5;
+  }
+}

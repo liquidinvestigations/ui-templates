@@ -26,8 +26,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
 </head>
 
 <body>
-    <div style="height: 50px; position: relative" id="liquid-menu-container"></div>
     <script src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.js"></script>
+
     <style>#dokuwiki__usertools { top: 50px; }</style>
     <div id="dokuwiki__site"><div id="dokuwiki__top" class="site <?php echo tpl_classes(); ?> <?php
         echo ($showSidebar) ? 'showSidebar' : ''; ?> <?php echo ($hasSidebar) ? 'hasSidebar' : ''; ?>">
