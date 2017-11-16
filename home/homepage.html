@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Liquid Investigations</h1>
+
+<p>
+  {% if request.user.is_authenticated %}
+    {{ request.user }}
+    <a href="/accounts/logout/?next=/">[logout]</a>
+    {% if request.user.is_staff %}
+      <a href="/admin-ui/">[admin]</a>
+      <a href="/admin/">[django admin]</a>
+      <a href="/admin/reconfigure/">[reconfigure]</a>
+    {% endif %}
+  {% else %}
+    <a href="/accounts/login/">[login]</a>
+  {% endif %}
+</p>
+
+{% if hoover_app_url %}
+<p>
+  <a href="{{ hoover_app_url }}">Hoover</a>
+</p>
+{% endif %}
+
+{% if hypothesis_app_url %}
+<p>
+  <a href="{{ hypothesis_app_url }}">Hypothesis</a>
+</p>
+{% endif %}
+
+{% if dokuwiki_app_url %}
+<p>
+  <a href="{{ dokuwiki_app_url }}">DokuWiki</a>
+</p>
+{% endif %}
+
+{% if matrix_app_url %}
+<p>
+  <a href="{{ matrix_app_url }}">Matrix</a>
+</p>
+{% endif %}
+
+{% if davros_app_url %}
+<p>
+  <a href="{{ davros_app_url }}">Davros</a>
+</p>
+{% endif %}
+
+
+<h2>Discovered nodes</h2>
+
+{% if nodes %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Interface</th>
+        <th>Hostname</th>
+        <th>IP</th>
+        <th>Discovered</td>
+      </tr>
+    </thead>
+    <tbody>
+  {% for interface, interface_nodes in nodes.items %}
+    {% for name, node in interface_nodes.items %}
+      {% if interface == status.dns_interface or not status.dns_interface %}
+        <tr>
+            <td>{{ interface }}</td>
+            <td>
+                <a href="http://{{ node.hostname }}">
+                    {{ node.hostname }}
+                </a>
+                {% if node.is_local %}
+                  (this node)
+                {% endif %}
+            </td>
+            <td>{{ node.address }}</td>
+            <td>{{ node.discovered_at_datetime | timesince }} ago</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p> No other nodes discovered on the network. </p>
+{% endif %}
+
+<script src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.js"></script>
+
+{% endblock %}

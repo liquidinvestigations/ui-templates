@@ -1,19 +1,13 @@
 (function () {
 
-    var parts = window.location.hostname.split('.');
-    var subDomain = '';
-
-    document.body.className += ' li-page';
-
-    if (parts.length > 2) {
-        subDomain = parts[0];
-        document.body.className += ' li-' + subDomain + '-page';
-    }
+    var subDomain = window.location.hostname
+        .replace('__LIQUID_DOMAIN__', '')
+        .replace('.', '');
 
     var menuItems = [
         {
             href: '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__',
-            label: 'Home',
+            label: 'Dashboard',
             icon: '',
             cssClass: ('' === subDomain ? 'active' : '')
         },
@@ -80,7 +74,7 @@
         menuContainerItems += genMenuItem(menuItems[i]);
     }
 
-    prepend('<iframe id="liMenu"></iframe>');
+    prepend('<iframe id="liMenu" style="display: none"></iframe>');
 
     var iframeDoc = document.querySelector('#liMenu').contentDocument;
     iframeDoc.body.className = 'menu-body';
@@ -98,7 +92,7 @@
     prepend(
         template(
             '<div class="li-top-menu">' +
-            '<div class="li-brand-container"><img class="li-brand" src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/li_logo.svg"></div>' +
+            '<div class="li-brand-container"><a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__" target="_parent"><img class="li-brand" src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/li_logo.svg"></a></div>' +
             '{{ items }}' +
             '</div>',
             {
@@ -107,5 +101,7 @@
         ),
         iframeDoc
     );
+
+    document.body.className += ' li-page li-' + subDomain + '-page';
 
 })();

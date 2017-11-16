@@ -39,6 +39,9 @@ apps = {
     "core-wizard": [
         ('welcome.html', '/opt/liquid-core/liquid-core/liquidcore/welcome/templates/welcome.html'),
         ('welcome-applying.html', '/opt/liquid-core/liquid-core/liquidcore/welcome/templates/welcome-applying.html')
+    ],
+    "home": [
+        ('homepage.html', '/opt/liquid-core/liquid-core/liquidcore/home/templates/homepage.html'),
     ]
 }
 
@@ -63,7 +66,7 @@ def main(liquid_protocol, liquid_domain):
 
 def post_copy():
     # rebuild davros
-    #subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
+    subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
     # restart everything
     subprocess.check_output(["supervisorctl", "restart", "all"])
 

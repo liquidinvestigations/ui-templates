@@ -1,7 +1,3 @@
-body.li-page {
-  padding-top: 60px !important;
-}
-
 body.menu-body {
   padding: 0;
   margin: 0;
@@ -23,6 +19,15 @@ body.menu-body {
   width: 100%;
   height: 60px;
   z-index: 9999999;
+  display: none;
+}
+
+body.li-page {
+  padding-top: 60px !important;
+}
+body.li-page #liMenu {
+  display: inline-block !important;
+  top: 0;
 }
 
 .li-top-menu {

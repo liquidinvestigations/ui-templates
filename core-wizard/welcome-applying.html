@@ -1,14 +1,63 @@
-{% extends "base.html" %}
-
 {% block content %}
-<h1>Liquid Investigations - Welcome!</h1>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LiquidInvestigationApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon"
+          href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/favicon.ico">
 
-<div style="height: 30px"></div>
+    <link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">
 
-<p>
-  Your settings are being applied. Wait a minute and connect to the
-  <tt>{{ ssid }}</tt> hotspot, then point your browser to
-  <a href="{{ url }}">{{ url }}</a>.
-</p>
+    <script type="text/javascript" src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/jquery/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }).show()
+        });
+    </script>
+    <style>
+        .modal {
+            padding: 0 !important;
+            background: #7197bb;
+        }
+
+        .modal-content {
+            box-shadow: none;
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <img style="width: 25%"
+                         src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/li_logo.svg">
+                </div>
+                <hr>
+                <h2 class="text-center">Welcome!</h2>
+
+                <h4 class="text-center">
+                    Your settings are being applied. Wait a minute and connect to the
+                    <tt>{{ ssid }}</tt> hotspot, then point your browser to
+                    <a href="{{ url }}">{{ url }}</a>.
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
 
 {% endblock %}

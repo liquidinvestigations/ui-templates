@@ -1,10 +1,6 @@
 $menuHeight: 60px;
 $themeBg: #7197bb;
 
-body.li-page {
-  padding-top: $menuHeight !important;
-}
-
 body.menu-body {
   padding: 0;
   margin: 0;
@@ -27,6 +23,19 @@ body.menu-body {
   width: 100%;
   height: $menuHeight;
   z-index: 9999999;
+
+  display: none;
+}
+
+$delay: 0.5s;
+
+body.li-page {
+  padding-top: $menuHeight !important;
+
+  #liMenu {
+    display: inline-block !important;
+    top: 0;
+  }
 }
 
 .li-top-menu {
