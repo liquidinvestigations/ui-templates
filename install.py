@@ -36,6 +36,10 @@ apps = {
     "matrix": [
         ('index.html', '/opt/matrix/synapse/lib/python2.7/site-packages/syweb/webclient/index.html'),
     ],
+    "core-wizard": [
+        ('welcome.html', '/opt/liquid-core/liquid-core/liquidcore/welcome/templates/welcome.html'),
+        ('welcome-applying.html', '/opt/liquid-core/liquid-core/liquidcore/welcome/templates/welcome-applying.html')
+    ]
 }
 
 SRC = Path(__file__).resolve().parent

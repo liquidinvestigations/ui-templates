@@ -55,8 +55,6 @@
         var newNode = document.createElement('span');
         newNode.innerHTML = html;
         doc.body.prepend( newNode );
-
-        // doc.body.innerHTML = html  + doc.body.innerHTML;
     }
 
     function template(tpl, data) {
