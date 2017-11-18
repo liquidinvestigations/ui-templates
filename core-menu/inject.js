@@ -42,7 +42,7 @@
             cssClass: ('matrix' === subDomain ? 'active' : '')
         },
         {
-            href: '/accounts/logout/?next=/',
+            href: '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/',
             label: 'Logout',
             icon: '',
             cssClass: 'logout',
