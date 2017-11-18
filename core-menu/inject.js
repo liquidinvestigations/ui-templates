@@ -40,6 +40,13 @@
             label: 'Matrix',
             icon: '',
             cssClass: ('matrix' === subDomain ? 'active' : '')
+        },
+        {
+            href: '/accounts/logout/?next=/',
+            label: 'Logout',
+            icon: '',
+            cssClass: 'logout',
+            hasDivider: true
         }
     ];
 
@@ -60,11 +67,12 @@
     function genMenuItem(item) {
         if (item.href) {
             return template(
-                '<a href="{{ href }}" target="_parent" class="li-btn {{ cssClass }}">{{ label }}</a>', item);
+                '<a href="{{ href }}" target="_parent" class="li-btn {{ cssClass }}">' +
+                '<i class="{{ icon }}"></i> {{ label }}</a>', item);
         } else {
             return template(
                 '<a href="__LIQUID_PROTOCOL__://{{ service }}.__LIQUID_DOMAIN__" ' +
-                'target="_parent" class="li-btn {{ cssClass }}">{{ label }}</a>', item);
+                'target="_parent" class="li-btn {{ cssClass }}"><i class="{{ icon }}"></i> {{ label }}</a>', item);
         }
     }
 

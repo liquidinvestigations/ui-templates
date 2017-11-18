@@ -42,6 +42,9 @@ apps = {
     ],
     "home": [
         ('homepage.html', '/opt/liquid-core/liquid-core/liquidcore/home/templates/homepage.html'),
+    ],
+    "registration": [
+        ('login.html', '/opt/liquid-core/liquid-core/liquidcore/home/templates/registration/login.html')
     ]
 }
 

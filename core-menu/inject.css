@@ -65,6 +65,14 @@ body.li-page #liMenu {
   transform: translateY(-50%);
   margin: 0 2px;
 }
+.li-top-menu .li-btn.logout {
+  border-left: 1px #ffffff solid;
+  border-radius: 0;
+}
+.li-top-menu .li-btn.logout:hover {
+  background: transparent;
+  text-decoration: underline;
+}
 .li-top-menu .li-btn:hover, .li-top-menu .li-btn.active {
   background: rgba(255, 255, 255, 0.32);
   text-decoration: none;

@@ -1,0 +1,151 @@
+{% block content %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LiquidInvestigationApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon"
+          href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/favicon.ico">
+
+    <link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/jquery/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }).show();
+
+            $('label').addClass('control-label col-xs-12 col-sm-5 text-right');
+            $('input').addClass('form-control input-sm');
+
+        });
+    </script>
+    <style>
+        .modal {
+            padding: 0 !important;
+            background: #7197bb;
+        }
+
+        .modal-content {
+            box-shadow: none;
+            border-radius: 3px;
+        }
+
+        .control-label {
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <img style="width: 25%"
+                         src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/li_logo.svg">
+                </div>
+
+                <hr>
+
+                <h1 class="text-center">Login</h1>
+
+                <br>
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for message in form.non_field_errors %}
+                        {{ message }}<br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <h3>Your account doesn't have access to this page. To proceed please login with an account that has
+                            access.</h3>
+                {% else %}
+                        <h3>Please login to see this page.</h3>
+                    {% endif %}
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}" class="form-horizontal">
+                    {% csrf_token %}
+
+                    <div class="form-group {% if form.errors.username %} has-error{% endif %}">
+                        {{ form.username.label_tag }}
+                        <div class="col-xs-12 col-sm-5">
+                            {{ form.username }}
+                        </div>
+                        {% if form.errors.username %}
+                        <span class="help-block">
+                                {% for message in form.errors.username %}
+                                    {{ message }}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group {% if form.errors.password %} has-error{% endif %}">
+                        {{ form.password.label_tag }}
+                        <div class="col-xs-12 col-sm-5">
+                            {{ form.password }}
+                        </div>
+                        {% if form.errors.password %}
+                        <span class="help-block">
+                                {% for message in form.errors.password %}
+                                    {{ message }}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {% if HOOVER_INSTALLED.twofactor %}
+                    <div class="form-group {% if form.errors.otp_token %} has-error{% endif %}">
+                        {{ form.otp_token.label_tag }}
+                        <div class="col-xs-12 col-sm-5">
+                            {{ form.otp_token }}
+                        </div>
+                        {% if form.errors.otp_token %}
+                        <span class="help-block">
+                                {% for message in form.errors.otp_token %}
+                                    {{ message }}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <br><br>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            {% if not HOOVER_INSTALLED.twofactor %}
+                                <a class="btn" href="{% url 'password_reset' %}">Lost password?</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-log-in"></i> Login
+                            </button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}
+

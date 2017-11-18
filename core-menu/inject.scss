@@ -83,6 +83,18 @@ body.li-page {
 
     margin: 0 2px;
 
+
+    &.logout {
+      border-left: 1px #ffffff solid;
+
+      border-radius: 0;
+
+      &:hover {
+        background: transparent;
+        text-decoration: underline;
+      }
+    }
+
     &:hover, &.active {
       background: rgba(255, 255, 255, 0.32);
       text-decoration: none;
