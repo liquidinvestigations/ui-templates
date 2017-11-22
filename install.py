@@ -20,7 +20,7 @@ apps = {
         ('inject.js', '/opt/web-ui/dist/menu/inject.js'),
     ],
     'dokuwiki': [
-        ('tpl/dokuwiki/main.php', '/opt/dokuwiki/lib/tpl/dokuwiki/main.php'),
+        ('tpl/bootstrap-template/main.php', '/opt/dokuwiki/lib/tpl/bootstrap-template/main.php'),
     ],
     'hoover': [
         # change so we don't inject in the built version

@@ -24,6 +24,8 @@ body.menu-body {
   height: $menuHeight;
   z-index: 9999999;
 
+  overflow: hidden;
+
   display: none;
 }
 
@@ -36,14 +38,21 @@ body.li-page {
     display: inline-block !important;
     top: 0;
   }
+
+  .annotator-frame .annotator-bucket-bar {
+    width: 73px;
+    left: -36px;
+  }
 }
 
 .li-top-menu {
 
   background: $themeBg;
-  width: 98%;
+  width: 95%;
   height: 100%;
   margin: 0 auto;
+
+  overflow: hidden;
 
   text-align: right;
 
@@ -105,9 +114,17 @@ body.li-page {
 
 .li-hypothesis-page {
 
-  .footer {
-    background: $themeBg;
-    color: #fff;
+  header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .nav-bar__content [title="Settings"] {
+    display: none;
+  }
+
+  .li-install-hp {
+    border-left: 1px #eee solid;
   }
 
   .lozenge {
