@@ -23,7 +23,7 @@ apps = {
         ('tpl/bootstrap-template/main.php', '/opt/dokuwiki/lib/tpl/bootstrap-template/main.php'),
     ],
     'hoover': [
-        # change so we don't inject in the built version
+        # TODO: change so we don't inject in the built version
         ('build/index.html', '/opt/hoover/ui/build/index.html'),
     ],
     "davros": [
