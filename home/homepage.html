@@ -14,75 +14,6 @@
     <script type="text/javascript"
             src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <script>
-        $(function () {
-
-            var icon = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/dummy.svg';
-
-            var services = [
-                {
-                    url: $('.service-hypothesis').data('url'),
-                    label: 'Hypothesis',
-                    description: 'Annotations',
-                    icon: icon
-                },
-                {
-                    url: $('.service-hoover').data('url'),
-                    label: 'Hoover',
-                    description: 'Search tool',
-                    icon: icon
-                },
-                {
-                    url: $('.service-dokuwiki').data('url'),
-                    label: 'DokuWiki',
-                    description: 'Wiki',
-                    icon: icon
-                },
-                {
-                    url: $('.service-davros').data('url'),
-                    label: 'Davros',
-                    description: 'File Sharing',
-                    icon: icon
-                },
-                {
-                    url: $('.service-matrix').data('url'),
-                    label: 'Matrix',
-                    description: 'Chat',
-                    icon: icon
-                }
-            ];
-
-            function template(tpl, data) {
-                return tpl.replace(/\<\< (.*?) \>\>/g, function (match, contents) {
-                    return data[contents];
-                });
-            }
-
-
-            var $servicesContainer = $('#servicesContainer');
-
-            for (var i in services) {
-                if (!services[i].url) continue;
-
-                $servicesContainer.append(
-                    template(
-                        '<a href="<< url >>" class="service-link">' +
-                        '    <div class="service-element">' +
-                        '        <div class="service-icon">' +
-                        '            <img src="<< icon >>">' +
-                        '        </div>' +
-                        '        <div class="service-body">' +
-                        '            <div class="service-label"><< label >></div>' +
-                        '            <div class="service-description"><< description >></div>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</a>'
-                        , services[i])
-                )
-            }
-
-        });
-    </script>
     <style>
         #landing {
             padding-top: 80px !important;
@@ -153,26 +84,6 @@
 
     <h1 class="text-center">Hello {{ request.user }}!</h1>
 
-    {% if hoover_app_url %}
-        <i class="service-hoover" data-url="{{ hoover_app_url }}"></i>
-    {% endif %}
-
-    {% if hypothesis_app_url %}
-        <i class="service-hypothesis" data-url="{{ hypothesis_app_url }}"></i>
-    {% endif %}
-
-    {% if dokuwiki_app_url %}
-        <i class="service-dokuwiki" data-url="{{ dokuwiki_app_url }}"></i>
-    {% endif %}
-
-    {% if matrix_app_url %}
-        <i class="service-matrix" data-url="{{ matrix_app_url }}"></i>
-    {% endif %}
-
-    {% if davros_app_url %}
-        <i class="service-davros" data-url="{{ davros_app_url }}"></i>
-    {% endif %}
-
     <div class="row">
         <div id="servicesContainer" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         </div>
@@ -229,6 +140,76 @@
 {% if request.user.is_authenticated %}
 <script src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.js"></script>
 {% endif %}
+
+{% verbatim %}
+<script>
+    $(function () {
+
+        var icon = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/dummy.svg';
+
+        $.getJSON(liURL + '/api/services/')
+            .done(function(result) {
+                renderServices(result);
+            });
+
+        var servicesDescription = {
+            'hypothesis': {
+                label: 'Hypothesis',
+                description: 'Annotations',
+                icon: icon
+            },
+            'hoover': {
+                label: 'Hoover',
+                description: 'Search tool',
+                icon: icon
+            },
+            'dokuwiki': {
+                label: 'DokuWiki',
+                description: 'Wiki',
+                icon: icon
+            },
+            'davros': {
+                label: 'Davros',
+                description: 'File Sharing',
+                icon: icon
+            },
+            'matrix': {
+                label: 'Matrix',
+                description: 'Chat',
+                icon: icon
+            }
+        };
+
+        function renderServices(services) {
+            var $servicesContainer = $('#servicesContainer');
+
+            for (var i in services) {
+                if (!services[i].is_enabled) continue;
+
+                var serviceName = services[i].name;
+                var currentService = $.extend(services[i], servicesDescription[serviceName]);
+
+                $servicesContainer.append(
+                    li_template(
+                        '<a href="{{ url }}" class="service-link">' +
+                        '    <div class="service-element">' +
+                        '        <div class="service-icon">' +
+                        '            <img src="{{ icon }}">' +
+                        '        </div>' +
+                        '        <div class="service-body">' +
+                        '            <div class="service-label">{{ label }}</div>' +
+                        '            <div class="service-description">{{ description }}</div>' +
+                        '        </div>' +
+                        '    </div>' +
+                        '</a>'
+                        , currentService)
+                )
+            }
+        }
+
+    });
+</script>
+{% endverbatim %}
 
 </body>
 </html>
