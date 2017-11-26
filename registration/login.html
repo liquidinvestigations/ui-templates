@@ -125,12 +125,7 @@
                     <br><br>
 
                     <div class="form-group">
-                        <div class="col-xs-6">
-                            {% if not HOOVER_INSTALLED.twofactor %}
-                                <a class="btn" href="{% url 'password_reset' %}">Lost password?</a>
-                            {% endif %}
-                        </div>
-                        <div class="col-xs-6 text-right">
+                        <div class="col-xs-12 text-right">
                             <button type="submit" class="btn btn-primary">
                                 <i class="glyphicon glyphicon-log-in"></i> Login
                             </button>
