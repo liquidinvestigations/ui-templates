@@ -179,8 +179,8 @@ body.li-page {
 }
 
 .li-matrix-page {
-  #footer {
-    background: $themeBg;
+  .header {
+    position: relative;
   }
 }
 

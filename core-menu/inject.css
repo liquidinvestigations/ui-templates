@@ -131,8 +131,8 @@ body.li-page .annotator-frame .annotator-bucket-bar {
   background-color: #414042;
 }
 
-.li-matrix-page #footer {
-  background: #7197bb;
+.li-matrix-page .header {
+  position: relative;
 }
 
 .li-dokuwiki-page #dokuwiki__usertools {
