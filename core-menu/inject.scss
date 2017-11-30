@@ -64,6 +64,7 @@ body.li-page {
     background: rgba(255, 255, 255, 0.7);
 
     border-radius: 0 0 5px 5px;
+    width: 120px;
 
     .li-brand {
       height: 100%;
@@ -107,6 +108,30 @@ body.li-page {
     &:hover, &.active {
       background: rgba(255, 255, 255, 0.32);
       text-decoration: none;
+    }
+  }
+
+  .li-user-container {
+    display: inline-block;
+    margin: 0 10px;
+    float: right;
+
+    height: 94%;
+    background: rgba(255, 255, 255, 0.7);
+
+    border-radius: 0 0 5px 5px;
+
+    font-size: 14px;
+
+    .li-user {
+      height: 100%;
+      padding: 20px 10px;
+
+      .li-log-out {
+        svg {
+          fill: #fff;
+        }
+      }
     }
   }
 

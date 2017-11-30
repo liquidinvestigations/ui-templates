@@ -9,7 +9,7 @@
 function li_prepend(html, doc) {
     if (!doc) doc = document;
 
-    var newNode = document.createElement('span');
+    var newNode = doc.createElement('span');
     newNode.innerHTML = html;
     doc.body.prepend( newNode );
 }
@@ -32,11 +32,13 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         .replace('.', '');
 
     promise
-        .get(liURL + '/api/services/')
-        .then(function (error, result) {
-            if (error && !result) return;
-            renderMenu(JSON.parse(result));
-        })
+        .join([
+            promise.get(liURL + '/api/services/'),
+            promise.get(liURL + '/api/users/whoami/')
+        ])
+        .then(function (results) {
+            renderMenu(JSON.parse(results[0][1]), JSON.parse(results[1][1]));
+        });
 
     var menuItems = [
         {
@@ -74,13 +76,6 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
             label: 'Matrix',
             icon: '',
             cssClass: ('matrix' === subDomain ? 'active' : '')
-        },
-        {
-            href: '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/',
-            label: 'Logout',
-            icon: '',
-            cssClass: 'logout',
-            hasDivider: true
         }
     ];
 
@@ -99,9 +94,13 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
     li_prepend('<iframe id="liMenu" style="display: none"></iframe>');
 
     var iframeDoc = document.querySelector('#liMenu').contentDocument;
+    iframeDoc.open();
+    iframeDoc.close();
+
     iframeDoc.body.className = 'menu-body';
 
     var stylesheet = li_template(
+        '<link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">' +
         '<link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.css?v={{ version }}">',
         {
             version: 100
@@ -111,7 +110,24 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
     li_prepend(stylesheet);
     li_prepend(stylesheet, iframeDoc);
 
-    function renderMenu(services) {
+    function getLogOutIcon() {
+        return '<svg width="18" height="14" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 1440q0 4 1 20t.5 26.5-3 23.5-10 19.5-20.5 6.5h-320q-119 0-203.5-84.5t-84.5-203.5v-704q0-119 84.5-203.5t203.5-84.5h320q13 0 22.5 9.5t9.5 22.5q0 4 1 20t.5 26.5-3 23.5-10 19.5-20.5 6.5h-320q-66 0-113 47t-47 113v704q0 66 47 113t113 47h312l11.5 1 11.5 3 8 5.5 7 9 2 13.5zm928-544q0 26-19 45l-544 544q-19 19-45 19t-45-19-19-45v-288h-448q-26 0-45-19t-19-45v-384q0-26 19-45t45-19h448v-288q0-26 19-45t45-19 45 19l544 544q19 19 19 45z"/></svg>';
+    }
+
+    function renderUserDetails(user) {
+        return li_template(
+            '<div class="li-user-container"><div class="li-user">' +
+            'Logged in as: {{ username }} ' +
+            (user.is_admin ? '<a href="/admin-ui" target="_parent" class="badge bg-primary">admin</a> ' : '') +
+            '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/" target="_parent" class="badge bg-success li-log-out">' +
+            getLogOutIcon() +
+            '</a>' +
+            '</div></div>',
+            user
+        );
+    }
+
+    function renderMenu(services, user) {
         var activeServices = services.map(function (t) { return t.name; });
 
         var menuContainerItems = '';
@@ -131,6 +147,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
                 '<div class="li-top-menu">' +
                 '<div class="li-brand-container"><a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__" target="_parent"><img class="li-brand" src="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/liquid-investigations/img/li_logo.svg"></a></div>' +
                 '{{ items }}' +
+                renderUserDetails(user) +
                 '</div>',
                 {
                     items: menuContainerItems

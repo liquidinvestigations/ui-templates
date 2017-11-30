@@ -49,6 +49,7 @@ body.li-page .annotator-frame .annotator-bucket-bar {
   height: 94%;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 0 0 5px 5px;
+  width: 120px;
 }
 .li-top-menu .li-brand-container .li-brand {
   height: 100%;
@@ -82,6 +83,22 @@ body.li-page .annotator-frame .annotator-bucket-bar {
 .li-top-menu .li-btn:hover, .li-top-menu .li-btn.active {
   background: rgba(255, 255, 255, 0.32);
   text-decoration: none;
+}
+.li-top-menu .li-user-container {
+  display: inline-block;
+  margin: 0 10px;
+  float: right;
+  height: 94%;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0 0 5px 5px;
+  font-size: 14px;
+}
+.li-top-menu .li-user-container .li-user {
+  height: 100%;
+  padding: 20px 10px;
+}
+.li-top-menu .li-user-container .li-user .li-log-out svg {
+  fill: #fff;
 }
 
 .li-hypothesis-page header {
