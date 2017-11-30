@@ -1,15 +1,56 @@
-{% extends "layouts/base.html.jinja2" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Not Found</title>
+    <link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">
+    <style>
 
-{% block title %}Page Not Found{% endblock %}
+        body {
+            margin: 0;
+            background: #7197bb;
+        }
 
-{% block content %}
-  {% include 'h:templates/includes/logo-header.html.jinja2' %}
-  <div class="form-container">
-    <h1 class="form-header">Page not found</h1>
-    <p>Either this page does not exist, or you do not have the permissions required for viewing it.</p>
-  </div>
-{% endblock %}
+        .wrapper {
+            background: #7197bb;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
 
-{% block footer %}
-  {% include "h:templates/includes/footer.html.jinja2" %}
-{% endblock %}
+        .wrapper div {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+
+            font-size: 5em;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div>
+        <i class="fa fa-warning fa-3x"></i>
+        <br>
+        404 Not Found.
+        <br>
+        <button class="btn btn-warning btn-lg">
+            <i class="fa fa-arrow-left"></i>
+            Go back
+        </button>
+    </div>
+</div>
+
+<script>
+    document.querySelector('button').addEventListener('click', function () {
+        window.history.back(-1);
+    });
+</script>
+
+</body>
+</html>

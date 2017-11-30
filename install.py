@@ -25,6 +25,7 @@ apps = {
     'hoover': [
         # TODO: change so we don't inject in the built version
         ('build/index.html', '/opt/hoover/ui/build/index.html'),
+        ('build/doc.html', '/opt/hoover/ui/build/doc.html'),
     ],
     "davros": [
         ('app/index.html', '/opt/davros/davros/app/index.html'),
@@ -32,6 +33,8 @@ apps = {
     "hypothesis": [
         ('templates/layouts/base.html.jinja2', '/opt/hypothesis/h/h/templates/layouts/base.html.jinja2'),
         ('templates/home.html.jinja2', '/opt/hypothesis/h/h/templates/home.html.jinja2'),
+        ('templates/5xx.html.jinja2', '/opt/hypothesis/h/h/templates/5xx.html.jinja2'),
+        ('templates/notfound.html.jinja2', '/opt/hypothesis/h/h/templates/notfound.html.jinja2'),
     ],
     "matrix": [
         ('index.html', '/opt/matrix/synapse/lib/python2.7/site-packages/syweb/webclient/index.html'),
