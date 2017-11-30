@@ -100,7 +100,6 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
     iframeDoc.body.className = 'menu-body';
 
     var stylesheet = li_template(
-        '<link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">' +
         '<link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/menu/inject.css?v={{ version }}">',
         {
             version: 100
@@ -108,6 +107,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
     );
 
     li_prepend(stylesheet);
+    li_prepend('<link rel="stylesheet" href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/assets/bootstrap/css/bootstrap.min.css">', iframeDoc);
     li_prepend(stylesheet, iframeDoc);
 
     function getLogOutIcon() {
