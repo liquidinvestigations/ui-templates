@@ -37,7 +37,12 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
             promise.get(liURL + '/api/users/whoami/')
         ])
         .then(function (results) {
-            renderMenu(JSON.parse(results[0][1]), JSON.parse(results[1][1]));
+            var whoami = JSON.parse(results[1][1]);
+            if (whoami.is_authenticated === false) {
+                window.location = '/accounts/login/'
+            }
+
+            renderMenu(JSON.parse(results[0][1]), whoami);
         });
 
     var menuItems = [

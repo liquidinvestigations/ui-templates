@@ -66,15 +66,7 @@
 <body id="landing">
 
 <div class="container">
-    {% if request.user.is_authenticated %}
-        {% if request.user.is_staff %}
-        <ul class="nav nav-pills pull-right">
-            <li><a href="/admin-ui/">Admin</a></li>
-            <li><a href="/admin">Django Admin</a></li>
-            <li><a href="/admin/reconfigure/">Reconfigure</a></li>
-        </ul>
-        {% endif %}
-    {% else %}
+    {% if not request.user.is_authenticated %}
         <script>
             window.location = '/accounts/login/'
         </script>
