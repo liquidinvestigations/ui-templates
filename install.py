@@ -16,8 +16,8 @@ import shutil
 
 apps = {
     'core-menu': [
-        ('inject.css', '/opt/web-ui/dist/menu/inject.css'),
-        ('inject.js', '/opt/web-ui/dist/menu/inject.js'),
+        ('inject.css', '/opt/ui/web-ui/dist/menu/inject.css'),
+        ('inject.js', '/opt/ui/web-ui/dist/menu/inject.js'),
     ],
     'dokuwiki': [
         ('tpl/bootstrap-template/main.php', '/opt/dokuwiki/lib/tpl/bootstrap-template/main.php'),
