@@ -65,7 +65,7 @@ def main(liquid_protocol, liquid_domain):
                     .replace('__LIQUID_PROTOCOL__', liquid_protocol)
                     .replace('__LIQUID_DOMAIN__', liquid_domain)
                 )
-            Path(dst).parent.mkdir(exist_ok=True)
+            Path(dst).parent.mkdir(exist_ok=True, parents=True)
             with open(dst, 'w', encoding='latin1') as f:
                 f.write(data)
     post_copy()
