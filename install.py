@@ -65,7 +65,7 @@ def main(liquid_protocol, liquid_domain):
                     .replace('__LIQUID_PROTOCOL__', liquid_protocol)
                     .replace('__LIQUID_DOMAIN__', liquid_domain)
                 )
-            Path(dst).parent.mkdir(exist_ok=True)
+            Path(dst).parent.mkdir(exist_ok=True, parents=True)
             with open(dst, 'w', encoding='latin1') as f:
                 f.write(data)
     post_copy()
@@ -73,7 +73,12 @@ def main(liquid_protocol, liquid_domain):
 
 def post_copy():
     # rebuild davros
-    subprocess.check_output(["./node_modules/ember-cli/bin/ember", "build"], cwd="/opt/davros/davros")
+    cwd = "/opt/davros/davros"
+    if (Path(cwd) / 'node_modules').exists():
+        subprocess.check_output(
+            ["./node_modules/ember-cli/bin/ember", "build"],
+            cwd=cwd,
+        )
     # restart everything
     subprocess.check_output(["supervisorctl", "restart", "all"])
 
