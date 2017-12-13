@@ -138,12 +138,15 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         var menuContainerItems = '';
 
         for (var i in menuItems) {
-            var item = menuItems[i];
+            if (menuItems.hasOwnProperty(i)) {
+                var item = menuItems[i];
 
-            if (
-                !item.service || (item.service && -1 < activeServices.indexOf(item.service))
-            ) {
-                menuContainerItems += genMenuItem(menuItems[i]);
+                if (
+                    !item.service ||
+                    (item.service && -1 < activeServices.indexOf(item.service))
+                ) {
+                    menuContainerItems += genMenuItem(menuItems[i]);
+                }
             }
         }
 

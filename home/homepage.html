@@ -176,26 +176,28 @@
             var $servicesContainer = $('#servicesContainer');
 
             for (var i in services) {
-                if (!services[i].is_enabled) continue;
+                if (services.hasOwnProperty(i)) {
+                    if (!services[i].is_enabled) continue;
 
-                var serviceName = services[i].name;
-                var currentService = $.extend(services[i], servicesDescription[serviceName]);
+                    var serviceName = services[i].name;
+                    var currentService = $.extend(services[i], servicesDescription[serviceName]);
 
-                $servicesContainer.append(
-                    li_template(
-                        '<a href="{{ url }}" class="service-link">' +
-                        '    <div class="service-element">' +
-                        '        <div class="service-icon">' +
-                        '            <img src="{{ icon }}">' +
-                        '        </div>' +
-                        '        <div class="service-body">' +
-                        '            <div class="service-label">{{ label }}</div>' +
-                        '            <div class="service-description">{{ description }}</div>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</a>'
-                        , currentService)
-                )
+                    $servicesContainer.append(
+                        li_template(
+                            '<a href="{{ url }}" class="service-link">' +
+                            '    <div class="service-element">' +
+                            '        <div class="service-icon">' +
+                            '            <img src="{{ icon }}">' +
+                            '        </div>' +
+                            '        <div class="service-body">' +
+                            '            <div class="service-label">{{ label }}</div>' +
+                            '            <div class="service-description">{{ description }}</div>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '</a>'
+                            , currentService)
+                    )
+                }
             }
         }
 
