@@ -39,7 +39,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         .then(function (results) {
             var whoami = JSON.parse(results[1][1]);
             if (whoami.is_authenticated === false) {
-                window.location = '/accounts/login/'
+                window.location = liURL + '/accounts/login/';
             }
 
             renderMenu(JSON.parse(results[0][1]), whoami);
@@ -123,7 +123,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         return li_template(
             '<div class="li-user-container"><div class="li-user">' +
             'Logged in as: {{ username }} ' +
-            (user.is_admin ? '<a href="/admin-ui" target="_parent" class="badge bg-primary">admin</a> ' : '') +
+            (user.is_admin ? '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/admin-ui" target="_parent" class="badge bg-primary">admin</a> ' : '') +
             '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/" target="_parent" class="badge bg-success li-log-out">' +
             getLogOutIcon() +
             '</a>' +
