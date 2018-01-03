@@ -73,14 +73,14 @@ def main(liquid_protocol, liquid_domain):
 
 def post_copy():
     # rebuild davros
-    cwd = "/opt/davros/davros"
-    if (Path(cwd) / 'node_modules').exists():
-        subprocess.check_output(
-            ["./node_modules/ember-cli/bin/ember", "build"],
-            cwd=cwd,
-        )
-    # restart everything
-    subprocess.check_output(["supervisorctl", "restart", "all"])
+    # TODO fix davros
+    #cwd = "/opt/davros/davros"
+    #if (Path(cwd) / 'node_modules').exists():
+    #    subprocess.check_output(
+    #        ["./node_modules/ember-cli/bin/ember", "build"],
+    #        cwd=cwd,
+    #    )
+    pass
 
 if __name__ == '__main__':
     import sys
