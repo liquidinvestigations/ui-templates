@@ -107,13 +107,21 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         return '<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 1440q0 4 1 20t.5 26.5-3 23.5-10 19.5-20.5 6.5h-320q-119 0-203.5-84.5t-84.5-203.5v-704q0-119 84.5-203.5t203.5-84.5h320q13 0 22.5 9.5t9.5 22.5q0 4 1 20t.5 26.5-3 23.5-10 19.5-20.5 6.5h-320q-66 0-113 47t-47 113v704q0 66 47 113t113 47h312l11.5 1 11.5 3 8 5.5 7 9 2 13.5zm928-544q0 26-19 45l-544 544q-19 19-45 19t-45-19-19-45v-288h-448q-26 0-45-19t-19-45v-384q0-26 19-45t45-19h448v-288q0-26 19-45t45-19 45 19l544 544q19 19 19 45z"/></svg>';
     }
 
+    function getWrenchIcon() {
+        return '<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M448 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm644-420l-682 682q-37 37-90 37-52 0-91-37l-106-108q-38-36-38-90 0-53 38-91l681-681q39 98 114.5 173.5t173.5 114.5zm634-435q0 39-23 106-47 134-164.5 217.5t-258.5 83.5q-185 0-316.5-131.5t-131.5-316.5 131.5-316.5 316.5-131.5q58 0 121.5 16.5t107.5 46.5q16 11 16 28t-16 28l-293 169v224l193 107q5-3 79-48.5t135.5-81 70.5-35.5q15 0 23.5 10t8.5 25z"/></svg>';
+    }
+
     function renderUserDetails(user) {
         return li_template(
             '<div class="li-user-container"><div class="li-user">' +
-            'Logged in as: {{ username }} ' +
-            (user.is_admin ? '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/admin-ui" target="_parent" class="li-badge li-bg-primary">admin</a> ' : '') +
-            '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/" target="_parent" class="li-badge li-bg-success">' +
-            '<div class="logout">' + getLogOutIcon() + '</div>' +
+            '<div class="details">Logged in as: <b>{{ username }}</b>' +
+            (user.is_admin
+                ? '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/admin-ui" target="_parent">' +
+                '<div class="icon-container">' + getWrenchIcon() + '</div> Admin panel</a> '
+                : ''
+            ) +
+            '</div><a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/" target="_parent" title="Log out" class="li-badge li-bg-success logout-box">' +
+            '<div class="icon-container">' + getLogOutIcon() + '</div>' +
             '</a>' +
             '</div></div>',
             user

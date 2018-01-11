@@ -1,15 +1,16 @@
-$menuHeight: 60px;
+$menuHeight: 62px;
 $themeBg: #7197bb;
 $delay: 0.5s;
 
-* {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  box-shadow: none !important;
-}
-
 #liMenu {
+
+  * {
+    font-family: sans-serif !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    box-shadow: none !important;
+  }
+
   border: 0;
   margin: 0;
 
@@ -64,7 +65,6 @@ $delay: 0.5s;
       align-content: space-between;
       align-items: center;
       justify-content: flex-end;
-      overflow: hidden;
       min-width: 110px;
 
       ul {
@@ -72,7 +72,7 @@ $delay: 0.5s;
         list-style: none;
 
         li {
-          display: inline-block;
+          display: inline-flex;
         }
       }
 
@@ -88,6 +88,7 @@ $delay: 0.5s;
         border: 1px solid transparent;
         border-radius: 4px;
         color: #fff;
+        width: 100%;
 
         text-decoration: none;
         margin: 0 2px;
@@ -109,6 +110,8 @@ $delay: 0.5s;
       border-radius: 0 0 5px 5px;
       font-size: 14px;
       line-height: 14px;
+      margin-left: 15px;
+      width: 200px;
 
       a,
       a:hover {
@@ -125,9 +128,35 @@ $delay: 0.5s;
 
       .li-user {
         height: 100%;
-        padding: 20px 10px;
+        padding: 5px 10px;
+        line-height: 19px;
 
-        .logout {
+        .logout-box {
+          display: inline-block;
+          position: relative;
+          top: -10px;
+        }
+
+        .details {
+          width: 85%;
+          display: inline-block;
+          line-height: 23px;
+          height: 46px;
+
+          a {
+            display: block;
+            color: $themeBg;
+
+            .icon-container {
+              svg {
+                fill: $themeBg;
+              }
+            }
+          }
+        }
+
+        .icon-container {
+          display: inline-block;
           width: 12px;
           height: 12px;
 
@@ -161,8 +190,9 @@ $delay: 0.5s;
 
       li {
         transition: visibility .25s linear;
-        display: inline-block;
+        display: inline-flex;
         position: relative;
+        margin-left: 4px;
       }
 
       .navbar-handle {
@@ -174,16 +204,10 @@ $delay: 0.5s;
       }
     }
 
-    @media (max-width: 490px) {
-      .li-brand-container {
-        display: none;
-      }
-    }
-
     @media (max-width: 971px) {
       .menu {
         max-width: 150px;
-        margin: 0 auto;
+        margin: 0 0 0 auto;
         border-radius: 0 0 4px 4px;
 
         > ul {
@@ -197,6 +221,8 @@ $delay: 0.5s;
           display: block;
           padding: 0.5em 0.6em;
           border: none;
+          width: 150px;
+          margin-left: 0;
         }
 
         .navbar-handle {
@@ -226,6 +252,20 @@ $delay: 0.5s;
       }
     }
 
+    @media (max-width: 490px) {
+      .li-brand-container {
+        display: none;
+      }
+
+      .menu {
+        margin: 0 auto;
+
+        .navbar-handle {
+          margin: 0 auto;
+        }
+      }
+    }
+
     .navbar-checkbox {
       display: none;
     }
@@ -233,8 +273,8 @@ $delay: 0.5s;
     .navbar-handle {
       $height: 45px;
       font-size: 1.2em;
-      width: 50px;
-      margin: 0 auto;
+      width: 30px;
+      margin: 0 15px 0 auto;
       z-index: 10;
       height: $menuHeight;
       position: relative;

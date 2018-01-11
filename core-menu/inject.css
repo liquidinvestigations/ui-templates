@@ -1,23 +1,22 @@
-* {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  box-shadow: none !important;
-}
-
 #liMenu {
   border: 0;
   margin: 0;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
-  max-height: 60px;
+  height: 62px;
+  max-height: 62px;
   z-index: 9999999;
   display: none;
   padding: 0;
   background: #7197bb;
   overflow: visible;
+}
+#liMenu * {
+  font-family: sans-serif !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  box-shadow: none !important;
 }
 #liMenu .li-badge {
   display: inline-block;
@@ -55,7 +54,6 @@
   align-content: space-between;
   align-items: center;
   justify-content: flex-end;
-  overflow: hidden;
   min-width: 110px;
 }
 #liMenu .li-top-menu .menu-items ul {
@@ -63,7 +61,7 @@
   list-style: none;
 }
 #liMenu .li-top-menu .menu-items ul li {
-  display: inline-block;
+  display: inline-flex;
 }
 #liMenu .li-top-menu .menu-items .li-btn {
   display: inline-block;
@@ -77,6 +75,7 @@
   border: 1px solid transparent;
   border-radius: 4px;
   color: #fff;
+  width: 100%;
   text-decoration: none;
   margin: 0 2px;
 }
@@ -92,6 +91,8 @@
   border-radius: 0 0 5px 5px;
   font-size: 14px;
   line-height: 14px;
+  margin-left: 15px;
+  width: 200px;
 }
 #liMenu .li-top-menu .li-user-container a,
 #liMenu .li-top-menu .li-user-container a:hover {
@@ -105,13 +106,33 @@
 }
 #liMenu .li-top-menu .li-user-container .li-user {
   height: 100%;
-  padding: 20px 10px;
+  padding: 5px 10px;
+  line-height: 19px;
 }
-#liMenu .li-top-menu .li-user-container .li-user .logout {
+#liMenu .li-top-menu .li-user-container .li-user .logout-box {
+  display: inline-block;
+  position: relative;
+  top: -10px;
+}
+#liMenu .li-top-menu .li-user-container .li-user .details {
+  width: 85%;
+  display: inline-block;
+  line-height: 23px;
+  height: 46px;
+}
+#liMenu .li-top-menu .li-user-container .li-user .details a {
+  display: block;
+  color: #7197bb;
+}
+#liMenu .li-top-menu .li-user-container .li-user .details a .icon-container svg {
+  fill: #7197bb;
+}
+#liMenu .li-top-menu .li-user-container .li-user .icon-container {
+  display: inline-block;
   width: 12px;
   height: 12px;
 }
-#liMenu .li-top-menu .li-user-container .li-user .logout svg {
+#liMenu .li-top-menu .li-user-container .li-user .icon-container svg {
   fill: #fff;
 }
 
@@ -130,8 +151,9 @@
 }
 #liMenu .li-top-menu .menu li {
   transition: visibility 0.25s linear;
-  display: inline-block;
+  display: inline-flex;
   position: relative;
+  margin-left: 4px;
 }
 #liMenu .li-top-menu .menu .navbar-handle {
   display: none;
@@ -139,15 +161,10 @@
 #liMenu .li-top-menu .menu .navbar-handle, #liMenu .li-top-menu .menu .navbar-handle:after, #liMenu .li-top-menu .menu .navbar-handle:before {
   border-color: #ffffff;
 }
-@media (max-width: 490px) {
-  #liMenu .li-top-menu .li-brand-container {
-    display: none;
-  }
-}
 @media (max-width: 971px) {
   #liMenu .li-top-menu .menu {
     max-width: 150px;
-    margin: 0 auto;
+    margin: 0 0 0 auto;
     border-radius: 0 0 4px 4px;
   }
   #liMenu .li-top-menu .menu > ul {
@@ -160,6 +177,8 @@
     display: block;
     padding: 0.5em 0.6em;
     border: none;
+    width: 150px;
+    margin-left: 0;
   }
   #liMenu .li-top-menu .menu .navbar-handle {
     display: block;
@@ -178,15 +197,26 @@
     border-color: #cbcbcb;
   }
 }
+@media (max-width: 490px) {
+  #liMenu .li-top-menu .li-brand-container {
+    display: none;
+  }
+  #liMenu .li-top-menu .menu {
+    margin: 0 auto;
+  }
+  #liMenu .li-top-menu .menu .navbar-handle {
+    margin: 0 auto;
+  }
+}
 #liMenu .li-top-menu .navbar-checkbox {
   display: none;
 }
 #liMenu .li-top-menu .navbar-handle {
   font-size: 1.2em;
-  width: 50px;
-  margin: 0 auto;
+  width: 30px;
+  margin: 0 15px 0 auto;
   z-index: 10;
-  height: 60px;
+  height: 62px;
   position: relative;
   top: 19px;
   display: block;
@@ -207,7 +237,7 @@
 }
 
 body.li-page {
-  padding-top: 60px !important;
+  padding-top: 62px !important;
 }
 body.li-page #liMenu {
   display: inline-block !important;
@@ -253,5 +283,5 @@ body.li-page .annotator-frame .annotator-bucket-bar {
 }
 
 .li-dokuwiki-page #dokuwiki__usertools {
-  top: 65px;
+  top: 67px;
 }
