@@ -117,7 +117,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
             '<div class="details">Logged in as:&nbsp;<b>{{ username }}</b>' +
             (user.is_admin
                 ? '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/admin-ui" target="_parent">' +
-                '<div class="icon-container">' + getWrenchIcon() + '</div> Admin panel</a> '
+                '<div class="icon-container">' + getWrenchIcon() + '</div>&nbsp;Admin panel</a> '
                 : ''
             ) +
             '</div><a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/accounts/logout/?next=/" target="_parent" title="Log out" class="li-badge li-bg-success logout-box">' +

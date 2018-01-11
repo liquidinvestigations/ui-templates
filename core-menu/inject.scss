@@ -111,7 +111,6 @@ $delay: 0.5s;
       font-size: 14px;
       line-height: 14px;
       margin-left: 15px;
-      width: 200px;
 
       a,
       a:hover {
@@ -134,7 +133,7 @@ $delay: 0.5s;
         .logout-box {
           display: inline-block;
           position: absolute;
-          top: 19px;
+          top: 18px;
         }
 
         .details {
@@ -148,11 +147,11 @@ $delay: 0.5s;
 
           a {
             display: block;
-            color: $themeBg;
+            color: #337ab7;
 
             .icon-container {
               svg {
-                fill: $themeBg;
+                fill: #337ab7;
               }
             }
           }
@@ -160,8 +159,8 @@ $delay: 0.5s;
 
         .icon-container {
           display: inline-block;
-          width: 12px;
-          height: 12px;
+          width: 14px;
+          height: 14px;
 
           svg {
             fill: #fff;

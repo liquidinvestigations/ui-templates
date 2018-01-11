@@ -92,7 +92,6 @@
   font-size: 14px;
   line-height: 14px;
   margin-left: 15px;
-  width: 200px;
 }
 #liMenu .li-top-menu .li-user-container a,
 #liMenu .li-top-menu .li-user-container a:hover {
@@ -112,7 +111,7 @@
 #liMenu .li-top-menu .li-user-container .li-user .logout-box {
   display: inline-block;
   position: absolute;
-  top: 19px;
+  top: 18px;
 }
 #liMenu .li-top-menu .li-user-container .li-user .details {
   width: 85%;
@@ -125,15 +124,15 @@
 }
 #liMenu .li-top-menu .li-user-container .li-user .details a {
   display: block;
-  color: #7197bb;
+  color: #337ab7;
 }
 #liMenu .li-top-menu .li-user-container .li-user .details a .icon-container svg {
-  fill: #7197bb;
+  fill: #337ab7;
 }
 #liMenu .li-top-menu .li-user-container .li-user .icon-container {
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 #liMenu .li-top-menu .li-user-container .li-user .icon-container svg {
   fill: #fff;
