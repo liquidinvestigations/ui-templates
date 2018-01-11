@@ -111,14 +111,17 @@
 }
 #liMenu .li-top-menu .li-user-container .li-user .logout-box {
   display: inline-block;
-  position: relative;
-  top: -10px;
+  position: absolute;
+  top: 19px;
 }
 #liMenu .li-top-menu .li-user-container .li-user .details {
   width: 85%;
-  display: inline-block;
   line-height: 23px;
   height: 46px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
 }
 #liMenu .li-top-menu .li-user-container .li-user .details a {
   display: block;

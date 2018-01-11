@@ -114,7 +114,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
     function renderUserDetails(user) {
         return li_template(
             '<div class="li-user-container"><div class="li-user">' +
-            '<div class="details">Logged in as: <b>{{ username }}</b>' +
+            '<div class="details">Logged in as:&nbsp;<b>{{ username }}</b>' +
             (user.is_admin
                 ? '<a href="__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__/admin-ui" target="_parent">' +
                 '<div class="icon-container">' + getWrenchIcon() + '</div> Admin panel</a> '
