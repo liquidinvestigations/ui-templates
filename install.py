@@ -13,6 +13,7 @@ templates.
 from pathlib import Path
 import subprocess
 import shutil
+import re
 
 apps = {
     'core-menu': [
@@ -26,9 +27,6 @@ apps = {
         # TODO: change so we don't inject in the built version
         ('build/index.html', '/opt/hoover/ui/build/index.html'),
         ('build/doc.html', '/opt/hoover/ui/build/doc.html'),
-    ],
-    "davros": [
-        ('app/index.html', '/opt/davros/davros/app/index.html'),
     ],
     "hypothesis": [
         ('templates/layouts/base.html.jinja2', '/opt/hypothesis/h/h/templates/layouts/base.html.jinja2'),
@@ -68,19 +66,28 @@ def main(liquid_protocol, liquid_domain):
             Path(dst).parent.mkdir(exist_ok=True, parents=True)
             with open(dst, 'w', encoding='latin1') as f:
                 f.write(data)
-    post_copy()
+
+    patch_davros_index_html(liquid_protocol, liquid_domain)
 
 
-def post_copy():
-    # rebuild davros
-    # TODO fix davros
-    #cwd = "/opt/davros/davros"
-    #if (Path(cwd) / 'node_modules').exists():
-    #    subprocess.check_output(
-    #        ["./node_modules/ember-cli/bin/ember", "build"],
-    #        cwd=cwd,
-    #    )
-    pass
+def patch_davros_index_html(liquid_protocol, liquid_domain):
+    header = '<!-- begin liquid -->'
+    payload = (
+        '<script src="{}://{}/menu/inject.js"></script>'
+        .format(liquid_protocol, liquid_domain)
+    )
+    footer = '<!-- end liquid -->'
+    marker = '<body>'
+
+    index_html = Path('/opt/davros/davros/dist/index.html')
+    with index_html.open(encoding='latin1') as f:
+        html = f.read()
+
+    html = re.sub(re.escape(header) + r'.*' + re.escape(footer), '', html)
+    html = re.sub(re.escape(marker), marker + header + payload + footer, html)
+
+    with index_html.open('w', encoding='latin1') as f:
+        f.write(html)
 
 if __name__ == '__main__':
     import sys
