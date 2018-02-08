@@ -89,14 +89,15 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
         }
     ];
 
-    function genMenuItem(item) {
+    function genMenuItem(item, url) {
         if (item.href) {
             return li_template(
                 '<li><a href="{{ href }}" target="_parent" class="li-btn {{ cssClass }}">' +
                 '<i class="{{ icon }}"></i> {{ label }}</a></li>', item);
         } else {
+            item.url = url;
             return li_template(
-                '<li><a href="__LIQUID_PROTOCOL__://{{ service }}.__LIQUID_DOMAIN__" ' +
+                '<li><a href="{{ url }}" ' +
                 'target="_parent" class="li-btn {{ cssClass }}"><i class="{{ icon }}"></i> {{ label }}</a></li>', item);
         }
     }
@@ -130,6 +131,10 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
 
     function renderMenu(services, user) {
         var activeServices = services.map(function (t) { return t.name; });
+        var serviceUrl = {}
+        services.forEach(function(s) {
+          serviceUrl[s.name] = s.url;
+        })
 
         var menuContainerItems = '';
 
@@ -141,7 +146,7 @@ var liURL = '__LIQUID_PROTOCOL__://__LIQUID_DOMAIN__';
                     !item.service ||
                     (item.service && -1 < activeServices.indexOf(item.service))
                 ) {
-                    menuContainerItems += genMenuItem(menuItems[i]);
+                    menuContainerItems += genMenuItem(menuItems[i], serviceUrl[item.service]);
                 }
             }
         }
