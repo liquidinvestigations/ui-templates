@@ -68,6 +68,7 @@ def main(liquid_protocol, liquid_domain):
                 f.write(data)
 
     patch_davros_index_html(liquid_protocol, liquid_domain)
+    patch_riot_index_html(liquid_protocol, liquid_domain)
 
 
 def patch_davros_index_html(liquid_protocol, liquid_domain):
@@ -90,6 +91,36 @@ def patch_davros_index_html(liquid_protocol, liquid_domain):
 
     with index_html.open('w', encoding='latin1') as f:
         f.write(html)
+
+
+def patch_riot_index_html(liquid_protocol, liquid_domain):
+    marker = '<body style="height: 100%;">'
+    header = '<!-- begin liquid -->'
+    payload = (
+        '<script src="{}://{}/menu/inject.js"></script>'
+        .format(liquid_protocol, liquid_domain) +
+        '<script>'
+            'setInterval(function() {'
+                'var h = (window.innerHeight - 62) + "px";'
+                'document.querySelector("body").'
+                'setAttribute("style", "height: " + h)'
+            '}, 500)'
+        '</script>'
+    )
+    footer = '<!-- end liquid -->'
+
+    index_html = Path('/opt/matrix/riot/riot-v0.13.4/index.html')
+    print(index_html)
+    with index_html.open(encoding='latin1') as f:
+        html = f.read()
+
+    html = re.sub(re.escape(header) + r'.*' + re.escape(footer), '', html)
+    html = re.sub(re.escape(marker), marker + header + payload + footer, html)
+    assert payload in html
+
+    with index_html.open('w', encoding='latin1') as f:
+        f.write(html)
+
 
 if __name__ == '__main__':
     import sys
