@@ -71,20 +71,22 @@ def main(liquid_protocol, liquid_domain):
 
 
 def patch_davros_index_html(liquid_protocol, liquid_domain):
+    marker = '<body>'
     header = '<!-- begin liquid -->'
     payload = (
         '<script src="{}://{}/menu/inject.js"></script>'
         .format(liquid_protocol, liquid_domain)
     )
     footer = '<!-- end liquid -->'
-    marker = '<body>'
 
     index_html = Path('/opt/davros/davros/dist/index.html')
+    print(index_html)
     with index_html.open(encoding='latin1') as f:
         html = f.read()
 
     html = re.sub(re.escape(header) + r'.*' + re.escape(footer), '', html)
     html = re.sub(re.escape(marker), marker + header + payload + footer, html)
+    assert payload in html
 
     with index_html.open('w', encoding='latin1') as f:
         f.write(html)
