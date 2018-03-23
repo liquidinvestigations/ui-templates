@@ -109,7 +109,7 @@ def patch_riot_index_html(liquid_protocol, liquid_domain):
     )
     footer = '<!-- end liquid -->'
 
-    index_html = Path('/opt/matrix/riot/riot-v0.13.4/index.html')
+    index_html = Path('/opt/matrix/riot/riot-v0.13.5-dirty/index.html')
     print(index_html)
     with index_html.open(encoding='latin1') as f:
         html = f.read()
